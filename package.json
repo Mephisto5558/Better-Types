@@ -1,7 +1,7 @@
 {
   "name": "@mephisto5558/better-types",
   "version": "0.0.0",
-  "description": "a small collection of useful types",
+  "description": "A collection of useful TypeScript types and augmentations to improve developer experience.",
   "keywords": [
     "typing",
     "typescript"
@@ -34,14 +34,14 @@
   },
   "devDependencies": {
     "@mephisto5558/eslint-config": "latest",
-    "@types/node": "22.x",
+    "@types/node": "20.x",
     "better-typescript-lib": "latest"
   },
   "peerDependencies": {
-    "@types/node": ">=22.12.0",
+    "@types/node": ">=20",
     "better-typescript-lib": "latest"
   },
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=20"
   }
 }
