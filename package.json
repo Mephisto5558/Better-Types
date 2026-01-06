@@ -38,10 +38,10 @@
     "better-typescript-lib": "latest"
   },
   "peerDependencies": {
-    "@types/node": "22.x",
+    "@types/node": ">=22.12.0",
     "better-typescript-lib": "latest"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.12.0"
   }
 }
