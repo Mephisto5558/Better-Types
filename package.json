@@ -34,14 +34,14 @@
   },
   "devDependencies": {
     "@mephisto5558/eslint-config": "latest",
-    "@types/node": "20.x",
+    "@types/node": "22.x",
     "better-typescript-lib": "latest"
   },
   "peerDependencies": {
-    "@types/node": "20.x",
+    "@types/node": "22.x",
     "better-typescript-lib": "latest"
   },
   "engines": {
-    "node": "*"
+    "node": ">=22"
   }
 }
