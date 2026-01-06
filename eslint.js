@@ -6,6 +6,20 @@ export const globals = Object.freeze({
   ReplaceMethod: 'readonly',
   Snowflake: 'readonly',
 
+
   // better-typescript-lib
-  JSONValue: 'readonly'
+  JSONPrimitive: 'readonly',
+  JSONComposite: 'readonly',
+  JSONValueF: 'readonly',
+  JSONValue: 'readonly',
+  JSONObject: 'readonly',
+  JSONHolder: 'readonly',
+  ToJSON: 'readonly',
+  SomeExtends: 'readonly',
+
+  // SomeFunction: 'readonly', // use GenericFunction instead
+  SomeConstructor: 'readonly',
+  UndefinedDomain: 'readonly',
+  StringifyResultT: 'readonly',
+  StringifyResult: 'readonly'
 });

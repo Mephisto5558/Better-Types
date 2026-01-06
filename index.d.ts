@@ -50,6 +50,8 @@ declare global {
     toISOString(): ISODateTime;
   }
 
+  // #endregion Buildins
+
   type Snowflake = `${bigint}`;
 
   /* eslint-enable @typescript-eslint/consistent-type-definitions */
