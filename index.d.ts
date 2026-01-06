@@ -9,6 +9,19 @@ type ISODateTime = `${ISODate}T${ISOTime}Z`;
 
 type KeyToString<K extends PropertyKey> = K extends string ? K : K extends number ? `${K}` : never;
 
+type Split<S extends string, SEP extends string | undefined, L extends number = number, Acc extends string[] = []> = SEP extends unknown
+  ? [L] extends [Acc['length']] ? Acc
+    : SEP extends undefined ? [S]
+    : string extends S | SEP ? string[]
+    : SEP extends ''
+      ? S extends `${infer Head}${infer Tail}`
+        ? Split<Tail, SEP, L, [...Acc, Head]>
+        : Acc
+      : S extends `${infer Head}${SEP}${infer Tail}`
+        ? Split<Tail, SEP, L, [...Acc, Head]>
+        : [...Acc, S]
+  : never;
+
 declare global {
   // #region Buildins
   /* eslint-disable @typescript-eslint/consistent-type-definitions */
@@ -20,6 +33,12 @@ declare global {
   }
 
   interface String {
+    split(separator?: string, limit: 0): [];
+    split<T extends string>(this: T, separator?: undefined, limit?: number): [T];
+    split<T extends string, SEP extends string | undefined, L extends number = number>(
+      this: T, separator: SEP, limit?: L
+    ): Split<T, SEP, L>;
+
     toLowerCase<T extends string>(this: T): Lowercase<T>;
     toUpperCase<T extends string>(this: T): Uppercase<T>;
   }
