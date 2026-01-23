@@ -1,3 +1,6 @@
+/* eslint-disable-next-line @typescript-eslint/triple-slash-reference -- required to load before this file when this lib is loaded locally */
+/// <reference types="node" />
+
 /* eslint-disable sonarjs/no-built-in-override */
 
 /* eslint-disable-next-line unicorn/require-module-specifiers -- required */
