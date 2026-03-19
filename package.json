@@ -21,7 +21,11 @@
     ".": {
       "types": "./src/index.d.ts"
     },
-    "./eslint": "./src/eslint.js"
+    "./eslint": {
+      "types": "./src/eslint.d.ts",
+      "import": "./src/eslint.js",
+      "require": "./src/eslint.js"
+    }
   },
   "types": "src/index.d.ts",
   "files": [
