@@ -3,8 +3,8 @@
   "version": "1.0.1",
   "description": "A collection of useful TypeScript types and augmentations to improve developer experience.",
   "keywords": [
-    "typing",
-    "typescript"
+    "typescript",
+    "typing"
   ],
   "homepage": "https://github.com/Mephisto5558/Better-Types#readme",
   "bugs": {
@@ -32,6 +32,7 @@
     "src"
   ],
   "scripts": {
+    "lint": "eslint . --cache --cache-location ./node_modules/.cache/eslint/ >eslint.log",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
@@ -45,5 +46,12 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "onFail": "error",
+      "version": ">=20"
+    }
   }
 }
