@@ -19,15 +19,13 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./index.d.ts"
+      "types": "./src/index.d.ts"
     },
-    "./eslint": "./eslint.js"
+    "./eslint": "./src/eslint.js"
   },
-  "types": "index.d.ts",
+  "types": "src/index.d.ts",
   "files": [
-    "index.d.ts",
-    "eslint.js",
-    "eslint.d.ts"
+    "src"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
