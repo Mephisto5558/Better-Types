@@ -100,3 +100,8 @@ declare global {
     ? { [K in keyof T]: T[K] } & {}
     : T;
 }
+
+
+declare module 'discord-api-types/v10' {
+  export type Snowflake = globalThis.Snowflake;
+}
