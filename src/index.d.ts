@@ -95,4 +95,8 @@ declare global {
   type ReplaceMethod<T, K extends keyof T, This, Args extends unknown[] = Parameters<T[K]>> = StrictOmit<T, K> & {
     [P in K]: Exclude<T[P], GenericFunction> | ((this: This, ...args: Args) => ReturnType<Extract<T[P], GenericFunction>>);
   };
+
+  type Prettify<T> = T extends object
+    ? { [K in keyof T]: T[K] } & {}
+    : T;
 }

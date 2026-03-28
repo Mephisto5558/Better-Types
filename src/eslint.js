@@ -4,6 +4,7 @@ export const globals = Object.freeze({
   OmitFirstParameters: 'readonly',
   StrictOmit: 'readonly',
   ReplaceMethod: 'readonly',
+  Prettify: 'readonly',
   Snowflake: 'readonly',
 
 
