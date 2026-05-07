@@ -1,6 +1,12 @@
 /* eslint-disable-next-line @typescript-eslint/triple-slash-reference -- required to load before this file when this lib is loaded locally */
 /// <reference types="node" />
 
+/* eslint-disable @typescript-eslint/triple-slash-reference, @stylistic/multiline-comment-style
+  -- required to load other globals without affecting the global scope */
+/// <reference path="./logicShortcuts/normal.d.ts" />
+/// <reference path="./logicShortcuts/strict.d.ts" />
+/* eslint-enable @typescript-eslint/triple-slash-reference, @stylistic/multiline-comment-style */
+
 /* eslint-disable sonarjs/no-built-in-override */
 
 /* eslint-disable-next-line unicorn/require-module-specifiers -- required */
@@ -24,6 +30,18 @@ type Split<S extends string, SEP extends string | undefined, L extends number = 
         ? Split<Tail, SEP, L, [...Acc, Head]>
         : [...Acc, S]
   : never;
+
+type ShouldSkip<T> = [T] extends [object]
+  ? [T] extends [GenericFunction | GenericConstructor] ? true : false
+  : true;
+
+type _Prettify<T, Deep extends boolean, Depth extends unknown[] = []>
+  = ShouldSkip<T> extends true ? T
+  : Depth['length'] extends 10 ? T : {
+    [K in keyof T]: Deep extends true
+      ? _Prettify<T[K], Deep, [...Depth, unknown]>
+      : T[K]
+  } & {};
 
 declare global {
   // #region Buildins
@@ -79,8 +97,15 @@ declare global {
   /* eslint-enable @typescript-eslint/consistent-type-definitions */
 
   // #region useful Generics
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any -- used only as generic constraint */
-  type GenericFunction<Ret = any> = (...args: any) => Ret;
+  /* eslint-disable @typescript-eslint/no-explicit-any -- used only as generic constraint */
+
+  /** A function with some parameters and some return type. */
+  type GenericFunction<Ret = any> = (...args: any[]) => Ret;
+
+  /** A potentially abstract class or declared class. */
+  type GenericConstructor<Ret = object> = { prototype: Ret };
+
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 
   type OmitFirstParameters<
     T extends GenericFunction, N extends number = 1, Acc extends unknown[] = []
@@ -96,9 +121,8 @@ declare global {
     [P in K]: Exclude<T[P], GenericFunction> | ((this: This, ...args: Args) => ReturnType<Extract<T[P], GenericFunction>>);
   };
 
-  type Prettify<T> = T extends object
-    ? { [K in keyof T]: T[K] } & {}
-    : T;
+  type Prettify<T> = _Prettify<T, true>;
+  type ShallowPrettify<T> = _Prettify<T, false>;
 }
 
 
