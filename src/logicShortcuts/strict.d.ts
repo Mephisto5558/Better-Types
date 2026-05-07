@@ -1,5 +1,3 @@
-/* eslint-disable jsdoc/no-undefined-types -- todo */
-
 import type { BooleanOptions, ResolveBooleanResult } from './index.js';
 
 /* eslint-disable-next-line unicorn/require-module-specifiers -- required */

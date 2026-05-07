@@ -1,26 +1,48 @@
 /* eslint-disable-next-line import-x/prefer-default-export */
-export const globals = Object.freeze({
-  GenericFunction: 'readonly',
-  OmitFirstParameters: 'readonly',
-  StrictOmit: 'readonly',
-  ReplaceMethod: 'readonly',
-  Prettify: 'readonly',
-  Snowflake: 'readonly',
+export const globals = Object.freeze(Object.fromEntries([
+  'Snowflake',
+  'GenericFunction',
+  'GenericConstructor',
+  'OmitFirstParameters',
+  'StrictOmit',
+  'ReplaceMethod',
+  'Prettify',
+  'ShallowPrettify',
 
+  // logicShortcuts/normal.ts
+  'If',
+  'IfExtends',
+  'AddIf',
+  'Extends',
+  'And',
+  'Or',
+  'Not',
+  'Match',
+  'ExtendsMatch',
+  'ExtendsMultiMatch',
+  'Fn',
+  'IsEmptyArray',
+
+  // logicShortcuts/strict.ts
+  'IfExtendsStrict',
+  'ExtendsStrict',
+  'ExtendsMatchStrict',
+  'ExtendsMultiMatchStrict',
+  'StrictPick',
 
   // better-typescript-lib
-  JSONPrimitive: 'readonly',
-  JSONComposite: 'readonly',
-  JSONValueF: 'readonly',
-  JSONValue: 'readonly',
-  JSONObject: 'readonly',
-  JSONHolder: 'readonly',
-  ToJSON: 'readonly',
-  SomeExtends: 'readonly',
+  'JSONPrimitive',
+  'JSONComposite',
+  'JSONValueF',
+  'JSONValue',
+  'JSONObject',
+  'JSONHolder',
+  'ToJSON',
+  'SomeExtends',
 
-  // SomeFunction: 'readonly', // use GenericFunction instead
-  SomeConstructor: 'readonly',
-  UndefinedDomain: 'readonly',
-  StringifyResultT: 'readonly',
-  StringifyResult: 'readonly'
-});
+  // "SomeFunction", // use GenericFunction instead
+  'SomeConstructor',
+  'UndefinedDomain',
+  'StringifyResultT',
+  'StringifyResult'
+].map(e => [e, 'readonly'])));

@@ -32,20 +32,26 @@ type Split<S extends string, SEP extends string | undefined, L extends number = 
   : never;
 
 type ShouldSkip<T> = [T] extends [object]
-  ? [T] extends [GenericFunction | GenericConstructor] ? true : false
+  ? T extends GenericFunction | GenericConstructor ? true
+  : T extends { constructor: { prototype: unknown } }
+    ? true
+    : false
   : true;
 
 type _Prettify<T, Deep extends boolean, Depth extends unknown[] = []>
   = ShouldSkip<T> extends true ? T
-  : Depth['length'] extends 10 ? T : {
+  : Depth['length'] extends __MAX_PRETTIFY_DEPTH ? T : {
     [K in keyof T]: Deep extends true
       ? _Prettify<T[K], Deep, [...Depth, unknown]>
       : T[K]
   } & {};
 
 declare global {
+  /** The maximum depth for {@link Prettify}. Change with caution. */
+  type __MAX_PRETTIFY_DEPTH = 1;
+
   // #region Buildins
-  /* eslint-disable @typescript-eslint/consistent-type-definitions */
+  /* eslint-disable @typescript-eslint/consistent-type-definitions -- overwriting interfaces */
   namespace NodeJS {
     interface Require {
       /* eslint-disable-next-line @typescript-eslint/prefer-function-type -- overwriting only the function signature */
@@ -117,8 +123,11 @@ declare global {
    * {@link https://github.com/microsoft/TypeScript/issues/54451#issue-1732749888 More info} */
   type StrictOmit<T, K extends keyof T> = { [P in keyof T as P extends K ? never : P]: T[P] };
 
-  type ReplaceMethod<T, K extends keyof T, This, Args extends unknown[] = Parameters<T[K]>> = StrictOmit<T, K> & {
-    [P in K]: Exclude<T[P], GenericFunction> | ((this: This, ...args: Args) => ReturnType<Extract<T[P], GenericFunction>>);
+  type ReplaceMethod<
+    T, K extends keyof T, This,
+    Args extends unknown[] = T[K] extends GenericFunction ? Parameters<T[K]> : never
+  > = StrictOmit<T, K> & {
+    [P in K]: Exclude<T[P], GenericFunction> | (T[P] extends GenericFunction ? (this: This, ...args: Args) => ReturnType<T[P]> : never);
   };
 
   type Prettify<T> = _Prettify<T, true>;
