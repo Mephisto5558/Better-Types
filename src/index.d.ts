@@ -31,9 +31,10 @@ type Split<S extends string, SEP extends string | undefined, L extends number = 
         : [...Acc, S]
   : never;
 
+type ProbablyDiscordJs = { client: any };
+
 type ShouldSkip<T> = [T] extends [object]
-  ? T extends GenericFunction | GenericConstructor ? true
-  : T extends { constructor: { prototype: unknown } }
+  ? T extends ProbablyDiscordJs | GenericFunction | GenericConstructor | { constructor: GenericConstructor }
     ? true
     : false
   : true;
