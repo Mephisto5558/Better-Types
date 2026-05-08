@@ -101,6 +101,17 @@ declare global {
   type ShallowPrettify<T> = _Prettify<T, false>;
 }
 
+declare module 'node:path' {
+  export function basename<P extends string, E extends string | undefined = undefined>(
+    path: P, ext?: E
+  ): Lowercase<P> extends P ? Lowercase<StripExtension<P, E>> : StripExtension<P, E>;
+
+  export function extname<T extends string>(path: T): T extends Lowercase<string> ? Lowercase<string> : string;
+}
+
+declare module 'path' {
+  export * from 'node:path';
+}
 
 declare module 'discord-api-types/v10' {
   export type Snowflake = globalThis.Snowflake;
