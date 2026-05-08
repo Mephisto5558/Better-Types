@@ -11,6 +11,7 @@ export const globals = Object.freeze(Object.fromEntries([
 
   // logicShortcuts/normal.ts
   'If',
+  'IfEquals',
   'IfExtends',
   'AddIf',
   'Extends',

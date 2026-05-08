@@ -16,6 +16,12 @@ declare global {
       : ResolveBooleanResult<Options, 'ifFalse'>
   >;
 
+  type IfEquals<A, B, Options extends BooleanOptions> = Prettify<
+    (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2)
+      ? ResolveBooleanResult<Options, 'ifTrue'>
+      : ResolveBooleanResult<Options, 'ifFalse'>
+    >;
+
   /**
    * Resolves to `Options.ifTrue` if `T` extends `Type`,
    * otherwise to `Options.ifFalse`.
