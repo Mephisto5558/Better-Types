@@ -28,5 +28,5 @@ npm i @mephisto5558/better-types
 
 ```js
 // In one globally loaded d.ts or ts file, e.g. index.d.ts:
-import '@mephisto5558/better-types';
+import type {} from '@mephisto5558/better-types';
 ```
