@@ -26,8 +26,9 @@ declare global {
 
   /** Non-distributive version of {@link ExtendsMultiMatch}. */
   type ExtendsMultiMatchStrict<
-    KEYS extends readonly unknown[],
-    Cases extends readonly (readonly [NoInfer<KEYS[number]>, unknown])[]
+    BASE,
+    KEYS extends readonly BASE[],
+    Cases extends readonly (readonly [BASE, unknown])[]
   > = Prettify<
     { [I in keyof KEYS]: ExtendsMatchStrict<KEYS[I], NoInfer<Cases>> }[number]
   >;
