@@ -16,7 +16,11 @@ declare global {
       : ResolveBooleanResult<Options, 'ifFalse'>
   >;
 
+  /** Non-Object version of {@link If} to support use of `this`. */
+  type IfD<Condition extends boolean, IfTrue, IfFalse> = NoInfer<Condition> extends true ? IfTrue : IfFalse;
+
   type IfEquals<A, B, Options extends BooleanOptions> = Prettify<
+    /* eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters -- these are nessesary. */
     (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2)
       ? ResolveBooleanResult<Options, 'ifTrue'>
       : ResolveBooleanResult<Options, 'ifFalse'>
@@ -32,6 +36,9 @@ declare global {
       ? ResolveBooleanResult<Options, 'ifTrue'>
       : ResolveBooleanResult<Options, 'ifFalse'>
   >;
+
+  /** Non-Object version of {@link IfExtends} to support use of `this`. */
+  type IfExtendsD<T, Type, IfTrue, IfFalse> = T extends NoInfer<Type> ? IfTrue : IfFalse;
 
   /**
    * Adds `Options.ifTrue` to `Base` if `Condition` resolves to `true`,
