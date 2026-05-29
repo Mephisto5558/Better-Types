@@ -1,4 +1,3 @@
-
 type ISODate = `${number}${number}${number}${number}-${number}${number}-${number}${number}`;
 type ISOTime = `${number}${number}:${number}${number}:${number}${number}.${number}${number}${number}`;
 export type ISODateTime = `${ISODate}T${ISOTime}Z`;
@@ -35,7 +34,7 @@ export type _Prettify<T, Deep extends boolean, Depth extends unknown[] = []>
 
 export type StripExtension<T extends string, Ext extends string | undefined>
   = Ext extends string
-    ? T extends `${infer R}${Ext}` 
-      ? R 
-      : T 
+    ? T extends `${infer R}${Ext}`
+      ? R
+      : T
     : T;
