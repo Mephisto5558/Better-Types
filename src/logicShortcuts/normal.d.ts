@@ -1,4 +1,5 @@
 import type { BooleanOptions, ResolveBooleanResult } from './index.js';
+import type { AllKeys } from '#/utils.js';
 
 /* eslint-disable-next-line unicorn/require-module-specifiers -- required */
 export {};
@@ -10,11 +11,11 @@ declare global {
    * otherwise to `Options.ifFalse`.
    *
    * Defaults to `never` for either result. */
-  type If<Condition extends boolean, Options extends BooleanOptions> = Prettify<
-    NoInfer<Condition> extends true
+  type If<Condition extends boolean, Options extends BooleanOptions>
+    = Condition extends true
       ? ResolveBooleanResult<Options, 'ifTrue'>
       : ResolveBooleanResult<Options, 'ifFalse'>
-  >;
+  ;
 
   /** Non-Object version of {@link If} to support use of `this`. */
   type IfD<Condition extends boolean, IfTrue, IfFalse> = NoInfer<Condition> extends true ? IfTrue : IfFalse;
@@ -53,6 +54,9 @@ declare global {
 
   /** Resolves to `true` if `T extends Type`, otherwise to `false`. */
   type Extends<T, Type> = T extends NoInfer<Type> ? true : false;
+
+  /** Extract from `T` those types that have might have a property of key `K`. */
+  type GetAll<T, K extends AllKeys<T>> = Extract<T, Partial<Record<K, unknown>>>;
 
   type And<T extends readonly [boolean, boolean, ...boolean[]]>
     = NoInfer<T>[number] extends true ? true : false;
@@ -101,4 +105,7 @@ declare global {
     = number extends Arr['length']
       ? boolean
       : [Arr['length']] extends [0] ? true : false;
+
+  /** A loose implementation of {@link StrictOmit} that allows any `PropertyKey`s for `K`. */
+  type LooseOmit<T, K extends PropertyKey> = Pick<T, Exclude<keyof T, K>>;
 }

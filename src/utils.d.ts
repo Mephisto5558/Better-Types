@@ -17,7 +17,7 @@ export type Split<S extends string, SEP extends string | undefined, L extends nu
         : [...Acc, S]
   : never;
 
-type ProbablyDiscordJs = { client: any };
+type ProbablyDiscordJs = { client: unknown };
 type ShouldSkip<T> = [T] extends [object]
   ? T extends ProbablyDiscordJs | GenericFunction | GenericConstructor | { constructor: GenericConstructor }
     ? true
@@ -38,3 +38,5 @@ export type StripExtension<T extends string, Ext extends string | undefined>
       ? R
       : T
     : T;
+
+export type AllKeys<T> = T extends unknown ? keyof T : never;

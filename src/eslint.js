@@ -1,20 +1,22 @@
-/* eslint-disable-next-line import-x/prefer-default-export */
+/* eslint-disable-next-line import-x/prefer-default-export -- easier import */
 export const globals = Object.freeze(Object.fromEntries([
   'Snowflake',
   'GenericFunction',
   'GenericConstructor',
   'OmitFirstParameters',
-  'StrictOmit',
   'ReplaceMethod',
   'Prettify',
   'ShallowPrettify',
 
   // logicShortcuts/normal.ts
   'If',
+  'IfD',
   'IfEquals',
   'IfExtends',
+  'IfExtendsD',
   'AddIf',
   'Extends',
+  'GetAll',
   'And',
   'Or',
   'Not',
@@ -23,13 +25,19 @@ export const globals = Object.freeze(Object.fromEntries([
   'ExtendsMultiMatch',
   'Fn',
   'IsEmptyArray',
+  'LooseOmit',
 
   // logicShortcuts/strict.ts
   'IfExtendsStrict',
+  'IfExtendsStrictD',
+  'IfExtendsNever',
   'ExtendsStrict',
+  'ExtendsNever',
   'ExtendsMatchStrict',
   'ExtendsMultiMatchStrict',
   'StrictPick',
+  'GetAllStrict',
+  'StrictOmit',
 
   // better-typescript-lib
   'JSONPrimitive',

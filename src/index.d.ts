@@ -7,9 +7,9 @@
 /// <reference path="./logicShortcuts/strict.d.ts" />
 /* eslint-enable @typescript-eslint/triple-slash-reference, @stylistic/multiline-comment-style */
 
-/* eslint-disable sonarjs/no-built-in-override */
+/* eslint-disable sonarjs/no-built-in-override -- overwriting builtins */
 
-import type { ISODateTime, KeyToString, Split, _Prettify, StripExtension } from './utils.js';
+import type { ISODateTime, KeyToString, Split, StripExtension, _Prettify } from './utils.js';
 /* eslint-disable-next-line unicorn/require-module-specifiers -- required */
 export {};
 
@@ -83,12 +83,6 @@ declare global {
   type OmitFirstParameters<
     T extends GenericFunction, N extends number = 1, Acc extends unknown[] = []
   > = Acc['length'] extends N ? Parameters<T> extends [...Acc, ...infer Rest] ? Rest : never : OmitFirstParameters<T, N, [...Acc, unknown]>;
-
-  /**
-   * A stricter version of `Omit` that preserves modifiers better by using a mapped type.
-   *
-   * {@link https://github.com/microsoft/TypeScript/issues/54451#issue-1732749888 More info} */
-  type StrictOmit<T, K extends keyof T> = { [P in keyof T as P extends K ? never : P]: T[P] };
 
   type ReplaceMethod<
     T, K extends keyof T, This,
