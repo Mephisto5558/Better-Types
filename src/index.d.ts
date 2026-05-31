@@ -15,7 +15,7 @@ export {};
 
 declare global {
   /** The maximum depth for {@link Prettify}. Change with caution. */
-  type __MAX_PRETTIFY_DEPTH = 1;
+  type __MAX_PRETTIFY_DEPTH = 5;
 
   // #region Buildins
   /* eslint-disable @typescript-eslint/consistent-type-definitions -- overwriting interfaces */
