@@ -4,7 +4,7 @@ export const globals = Object.freeze(Object.fromEntries([
   'GenericFunction',
   'GenericConstructor',
   'OmitFirstParameters',
-  'ReplaceMethod',
+  'ReplaceMethods',
   'Prettify',
   'ShallowPrettify',
 

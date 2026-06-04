@@ -9,7 +9,7 @@
 
 /* eslint-disable sonarjs/no-built-in-override -- overwriting builtins */
 
-import type { ISODateTime, KeyToString, Split, StripExtension, _Prettify } from './utils.js';
+import type { AssignThis, ISODateTime, KeyToString, Split, StripExtension, _Prettify } from './utils.js';
 /* eslint-disable-next-line unicorn/require-module-specifiers -- required */
 export {};
 
@@ -84,11 +84,10 @@ declare global {
     T extends GenericFunction, N extends number = 1, Acc extends unknown[] = []
   > = Acc['length'] extends N ? Parameters<T> extends [...Acc, ...infer Rest] ? Rest : never : OmitFirstParameters<T, N, [...Acc, unknown]>;
 
-  type ReplaceMethod<
-    T, K extends keyof T, This,
-    Args extends unknown[] = T[K] extends GenericFunction ? Parameters<T[K]> : never
-  > = StrictOmit<T, K> & {
-    [P in K]: Exclude<T[P], GenericFunction> | (T[P] extends GenericFunction ? (this: This, ...args: Args) => ReturnType<T[P]> : never);
+  type ReplaceMethods<T, ContextMap extends Partial<Record<keyof T, unknown>>> = {
+    [K in keyof T]: K extends keyof ContextMap
+      ? AssignThis<T[K], ContextMap[K]>
+      : T[K];
   };
 
   type Prettify<T> = _Prettify<T, true>;

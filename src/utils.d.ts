@@ -40,3 +40,7 @@ export type StripExtension<T extends string, Ext extends string | undefined>
     : T;
 
 export type AllKeys<T> = T extends unknown ? keyof T : never;
+
+export type AssignThis<F, This> = F extends (...args: infer Args) => infer Return
+  ? (this: This, ...args: Args) => Return
+  : F;
