@@ -51,7 +51,7 @@
     "runtime": {
       "name": "node",
       "onFail": "error",
-      "version": ">=20"
+      "version": "^22.22.2 || >=24.15.0"
     }
   }
 }
