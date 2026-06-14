@@ -44,3 +44,40 @@ export type AllKeys<T> = T extends unknown ? keyof T : never;
 export type AssignThis<F, This> = F extends (...args: infer Args) => infer Return
   ? (this: This, ...args: Args) => Return
   : F;
+
+export type Join<AnArray, T, Sep extends string, ActualSep extends string>
+  = [T] extends [never]
+    ? ''
+    : [AnArray] extends [readonly []]
+        ? ''
+        : T extends string
+          ? string extends Sep
+            ? string
+            : AnArray extends readonly [infer Head extends string, ...infer Tail extends readonly string[]]
+              ? JoinTuple<Head, Tail, ActualSep>
+              : JoinArrayWithSep<T, ActualSep>
+          : string;
+
+type JoinTuple<Head extends string, Tail extends readonly string[], Sep extends string>
+  = Tail extends []
+    ? Head
+    : Concat<Head, Sep, JoinTuple<Tail[0], Tail extends readonly [unknown, ...infer Rest extends readonly string[]] ? Rest : [], Sep>>;
+
+type JoinArrayWithSep<T extends string, Sep extends string>
+  = string extends T
+    ? string
+    : string extends Sep
+      ? string
+      : [`${T}${Sep}${T}`] extends [T]
+          ? T
+          : string;
+
+type IsInfiniteLowercase<T extends string> = Lowercase<string> extends T ? true : false;
+type IsInfiniteUppercase<T extends string> = Uppercase<string> extends T ? true : false;
+
+type Concat<Head extends string, Sep extends string, Tail extends string>
+  = [IsInfiniteLowercase<Head>, IsInfiniteLowercase<Sep>, IsInfiniteLowercase<Tail>] extends [true, true, true]
+    ? Lowercase<string>
+    : [IsInfiniteUppercase<Head>, IsInfiniteUppercase<Sep>, IsInfiniteUppercase<Tail>] extends [true, true, true]
+        ? Uppercase<string>
+        : `${Head}${Sep}${Tail}`;
