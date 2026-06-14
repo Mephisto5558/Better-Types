@@ -4,7 +4,7 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Mephisto5558_Better-Types&metric=ncloc)](https://sonarcloud.io/component_measures?metric=ncloc&id=Mephisto5558_Better-Types)
 [![wakatime](https://wakatime.com/badge/github/Mephisto5558/Better-Types.svg)](https://wakatime.com/badge/github/Mephisto5558/Better-Types)<br>
 [![npm version](https://badge.fury.io/js/@mephisto5558%2Fbetter-types.svg)](https://www.npmjs.com/package/@mephisto5558/better-types)
-[![npm downloads](https://img.shields.io/npm/dm/%40mephisto5558%2FBetter-Types)](https://www.npmjs.com/package/@mephisto5558/better-types)<br>
+[![npm downloads](https://img.shields.io/npm/dm/%40mephisto5558%2Fbetter-types)](https://www.npmjs.com/package/@mephisto5558/better-types)<br>
 [![CodeQL](https://github.com/Mephisto5558/Better-Types/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/Mephisto5558/Better-Types/actions/workflows/github-code-scanning/codeql)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Mephisto5558_Better-Types&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Mephisto5558_Better-Types)<br>
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Mephisto5558_Better-Types&metric=security_rating)](https://sonarcloud.io/component_measures?metric=Security&id=Mephisto5558_Better-Types)
