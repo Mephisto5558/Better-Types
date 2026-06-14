@@ -81,3 +81,5 @@ type Concat<Head extends string, Sep extends string, Tail extends string>
     : [IsInfiniteUppercase<Head>, IsInfiniteUppercase<Sep>, IsInfiniteUppercase<Tail>] extends [true, true, true]
         ? Uppercase<string>
         : `${Head}${Sep}${Tail}`;
+
+export type Falsy = false | 0 | 0n | '' | null | undefined;

@@ -9,7 +9,7 @@
 
 /* eslint-disable sonarjs/no-built-in-override -- overwriting builtins */
 
-import type { AssignThis, ISODateTime, Join, KeyToString, Split, StripExtension, _Prettify } from './utils.js';
+import type { AssignThis, Falsy, ISODateTime, Join, KeyToString, Split, StripExtension, _Prettify } from './utils.js';
 /* eslint-disable-next-line unicorn/require-module-specifiers -- required */
 export {};
 
@@ -41,6 +41,16 @@ declare global {
     toString(radix?: 10): `${bigint}`;
   }
 
+  interface Array<T> {
+    join<Sep extends string | undefined>(separator?: Sep): Join<this, T, Sep, undefined extends Sep ? ',' : Sep>;
+    filter(predicate: BooleanConstructor): Exclude<T, Falsy>[];
+  }
+
+  interface ReadonlyArray<T> {
+    join<Sep extends string | undefined>(separator?: Sep): Join<this, T, Sep, undefined extends Sep ? ',' : Sep>;
+    filter(predicate: BooleanConstructor): Exclude<T, Falsy>[];
+  }
+
   interface ObjectConstructor {
     keys<K extends PropertyKey, V>(o: [K, V] extends [never, never] ? never : Record<K, V>): KeyToString<K>[]; // handles things like enums
     keys<T>(o: T): KeyToString<keyof T>[];
@@ -54,14 +64,6 @@ declare global {
     entries<T>(o: T): ({
       [K in keyof T]: undefined extends T[K] ? T[K] : Required<T>[K]
     } extends { [_ in keyof T]: infer V } ? [KeyToString<keyof T>, V] : never)[];
-  }
-
-  interface Array<T> {
-    join<Sep extends string | undefined>(separator?: Sep): Join<this, T, Sep, undefined extends Sep ? ',' : Sep>;
-  }
-
-  interface ReadonlyArray<T> {
-    join<Sep extends string | undefined>(separator?: Sep): Join<this, T, Sep, undefined extends Sep ? ',' : Sep>;
   }
 
   interface Date {
