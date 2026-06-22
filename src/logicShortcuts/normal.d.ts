@@ -108,4 +108,10 @@ declare global {
 
   /** A loose implementation of {@link StrictOmit} that allows any `PropertyKey`s for `K`. */
   type LooseOmit<T, K extends PropertyKey> = Pick<T, Exclude<keyof T, K>>;
+
+  type IsAny<T> = 0 extends (1 & T) ? true : false;
+  type IfIsAny<T, Options extends BooleanOptions>
+    = 0 extends (1 & T)
+      ? ResolveBooleanResult<Options, 'ifTrue'>
+      : ResolveBooleanResult<Options, 'ifFalse'>;
 }
