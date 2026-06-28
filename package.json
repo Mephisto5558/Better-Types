@@ -34,12 +34,13 @@
   ],
   "scripts": {
     "lint": "eslint . --cache --cache-location ./node_modules/.cache/eslint/ >eslint.log",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsd tests --files **/*.test-d.ts"
   },
   "devDependencies": {
     "@mephisto5558/eslint-config": "latest",
     "@types/node": "20.x",
-    "better-typescript-lib": "latest"
+    "better-typescript-lib": "latest",
+    "tsd": "^0.33.0"
   },
   "peerDependencies": {
     "@types/node": ">=20",

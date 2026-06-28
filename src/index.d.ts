@@ -42,12 +42,12 @@ declare global {
   }
 
   interface Array<T> {
-    join<Sep extends string | undefined>(separator?: Sep): Join<this, T, Sep, undefined extends Sep ? ',' : Sep>;
+    join<Sep extends string>(separator?: Sep): Join<this, T, Sep, undefined extends Sep ? ',' : Sep>;
     filter(predicate: BooleanConstructor): Exclude<T, Falsy>[];
   }
 
   interface ReadonlyArray<T> {
-    join<Sep extends string | undefined>(separator?: Sep): Join<this, T, Sep, undefined extends Sep ? ',' : Sep>;
+    join<Sep extends string>(separator?: Sep): Join<this, T, Sep, undefined extends Sep ? ',' : Sep>;
     filter(predicate: BooleanConstructor): Exclude<T, Falsy>[];
   }
 
