@@ -18,5 +18,3 @@ jobs:
 
         workflows/eslint.yml:.github/workflows/eslint.yml
         workflows/njsscan.yml:.github/workflows/njsscan.yml
-
-        eslint.config.ts:eslint.config.ts
