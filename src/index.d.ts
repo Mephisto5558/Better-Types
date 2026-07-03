@@ -3,11 +3,10 @@
 
 /* eslint-disable @typescript-eslint/triple-slash-reference, @stylistic/multiline-comment-style
   -- required to load other globals without affecting the global scope */
+/// <reference path="./missingInBetterTypescriptLib.ts" />
 /// <reference path="./logicShortcuts/normal.d.ts" />
 /// <reference path="./logicShortcuts/strict.d.ts" />
 /* eslint-enable @typescript-eslint/triple-slash-reference, @stylistic/multiline-comment-style */
-
-/* eslint-disable sonarjs/no-built-in-override -- overwriting builtins */
 
 import type { AssignThis, Falsy, ISODateTime, Join, KeyToString, Split, StripExtension, _Prettify } from './utils.js';
 /* eslint-disable-next-line unicorn/require-module-specifiers -- required */
@@ -18,7 +17,6 @@ declare global {
   type __MAX_PRETTIFY_DEPTH = 5;
 
   // #region Buildins
-  /* eslint-disable @typescript-eslint/consistent-type-definitions -- overwriting interfaces */
   namespace NodeJS {
     interface Require {
       /* eslint-disable-next-line @typescript-eslint/prefer-function-type -- overwriting only the function signature */
@@ -77,7 +75,6 @@ declare global {
 
   type Snowflake = `${bigint}`;
 
-  /* eslint-enable @typescript-eslint/consistent-type-definitions */
 
   // #region useful Generics
   /* eslint-disable @typescript-eslint/no-explicit-any -- used only as generic constraint */
