@@ -1,3 +1,6 @@
+/* eslint-disable-next-line unicorn/require-module-specifiers -- required */
+export {};
+
 declare global {
   interface Map<K, V> {
     getOrInsert(key: K, value: V): V;

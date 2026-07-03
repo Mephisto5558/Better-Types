@@ -3,9 +3,11 @@
 
 /* eslint-disable @typescript-eslint/triple-slash-reference, @stylistic/multiline-comment-style
   -- required to load other globals without affecting the global scope */
-/// <reference path="./missingInBetterTypescriptLib.ts" />
+/// <reference path="./missingInBetterTypescriptLib.d.ts" />
 /// <reference path="./logicShortcuts/normal.d.ts" />
 /// <reference path="./logicShortcuts/strict.d.ts" />
+
+/// <reference path="./math/index.d.ts" />
 /* eslint-enable @typescript-eslint/triple-slash-reference, @stylistic/multiline-comment-style */
 
 import type { AssignThis, Falsy, ISODateTime, Join, KeyToString, Split, StripExtension, _Prettify } from './utils.js';
